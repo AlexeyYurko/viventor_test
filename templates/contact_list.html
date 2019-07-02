@@ -1,0 +1,21 @@
+{% extends "basic.html" %}
+{% block title %}
+    Contacts List
+{% endblock %}
+{% block content %}
+    <h1>List of Contacts</h1>
+    {% if contacts %}
+        <ul>
+            {% for contact in contacts %}
+                <div id={{ contact.id }}>
+                    {{ contact.first_name }} {{ contact.last_name }},
+                    {{ contact.phone_number }},
+                    {{ contact.email }},
+                    {{ contact.birth_date }}
+                </div>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Contact list is empty</p>
+    {% endif %}
+{% endblock %}
