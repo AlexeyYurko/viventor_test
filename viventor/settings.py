@@ -24,7 +24,7 @@ STATICFILE_DIR = os.path.join(BASE_DIR, 'static')
 SECRET_KEY = 'ep_4^vkvm*(@y(@bdr4!#!12bw)7nlr&d&zn(*5r&y6_l4_9n3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
 
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_hooks',
     'widget_tweaks',
     'contacts',
 ]
@@ -124,3 +125,11 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
     )
 }
+
+HOOK_EVENTS = {
+    'contact.added': 'contacts.Contact.created+',
+    'contact.changed': 'contacts.Contact.updated+',
+    'contact.removed': 'contacts.Contact.deleted+',
+}
+
+APPEND_SLASH = False
