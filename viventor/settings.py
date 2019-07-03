@@ -24,9 +24,9 @@ STATICFILE_DIR = os.path.join(BASE_DIR, 'static')
 SECRET_KEY = 'ep_4^vkvm*(@y(@bdr4!#!12bw)7nlr&d&zn(*5r&y6_l4_9n3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
 
 # Application definition
 
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'widget_tweaks',
     'contacts',
 ]
@@ -117,3 +118,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [STATICFILE_DIR, ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    )
+}
