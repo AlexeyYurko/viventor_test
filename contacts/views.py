@@ -14,7 +14,7 @@ class ContactsList(generic.ListView):
 
 def new_contact(request):
     if request.method == 'POST':
-        form = CreateContactForm(request.POST, request.FILES)
+        form = CreateContactForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
             post.save()

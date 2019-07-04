@@ -1,8 +1,6 @@
 from django.core.validators import RegexValidator
 from django.db import models
 from django.urls import reverse
-from rest_hooks.models import Hook
-from rest_hooks.signals import hook_event
 
 
 class Contact(models.Model):
@@ -22,7 +20,6 @@ class Contact(models.Model):
     birth_date = models.DateField()
 
     def get_full_name(self):
-        # The user is identified by their first and last name
         return f'{self.first_name} {self.last_name}'
 
     def __str__(self):
@@ -30,23 +27,3 @@ class Contact(models.Model):
 
     def get_absolute_url(self):
         return reverse('contact-detail', args=[str(self.id)])
-
-    def serialize_hook(self, hook):
-        return {
-            'hook': hook.dict(),
-            'data': {
-                'id': self.id,
-                'first_name': self.first_name,
-                'last_name': self.last_name,
-                'phone_number': self.phone_number,
-                'email': self.email,
-                'birth_date': self.birth_date,
-            }
-        }
-
-    def mark_as_read(self):
-        hook_event.send(
-            sender=self.__class__,
-            action='read',
-            instance=self
-        )

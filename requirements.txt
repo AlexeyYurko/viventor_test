@@ -1,4 +1,5 @@
+requests
+mimesis
 django
 django-widget-tweaks
 djangorestframework
-django-rest-hooks

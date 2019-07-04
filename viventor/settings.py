@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'rest_hooks',
     'widget_tweaks',
     'contacts',
 ]
@@ -126,10 +125,9 @@ REST_FRAMEWORK = {
     )
 }
 
-HOOK_EVENTS = {
-    'contact.added': 'contacts.Contact.created+',
-    'contact.changed': 'contacts.Contact.updated+',
-    'contact.removed': 'contacts.Contact.deleted+',
-}
-
 APPEND_SLASH = False
+
+HOOK_EVENTS = {'contact.add',
+               'contact.update',
+               'contact.delete'
+               }

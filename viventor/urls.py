@@ -23,12 +23,12 @@ from contacts import views as contacts_views
 
 router = routers.DefaultRouter()
 router.register(r'contacts', api_views.ContactViewSet)
-router.register(r'webhooks', api_views.HookViewSet, 'webhook')
 
 urlpatterns = [
     path('', contacts_views.ContactsList.as_view(), name='home'),
+    path('webhook/', api_views.webhook, name='webhook'),
     path('api/', include(router.urls)),
     path('admin/', admin.site.urls),
     path('contacts/', contacts_views.ContactsList.as_view(), name='contact-list'),
-    path('add_contact/', contacts_views.new_contact, name='new-contact'),
+    path('add_contact/', contacts_views.new_contact, name='add-contact'),
 ]
