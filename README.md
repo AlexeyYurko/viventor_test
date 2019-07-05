@@ -1,4 +1,4 @@
-# Junior Django Developer Test - Medium
+# Django Developer Test - Medium
 
 ## Background
 
